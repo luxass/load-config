@@ -1,0 +1,49 @@
+{
+  "name": "@luxass/load-config",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Load Configuration from a file",
+  "author": {
+    "name": "Lucas Norgaard",
+    "email": "lucasnrgaard@gmail.com",
+    "url": "https://luxass.dev"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/luxass/load-config/blob/main/packages/load-config#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luxass/load-config",
+    "directory": "packages/load-config"
+  },
+  "bugs": {
+    "url": "https://github.com/luxass/load-config/issues"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=16"
+  },
+  "packageManager": "pnpm@7.18.0",
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest --run",
+    "lint": "eslint --cache {src,tests}/**/*.ts"
+  },
+  "peerDependencies": {
+    "esbuild": "^0.16.4"
+  },
+  "devDependencies": {
+    "esbuild": "^0.16.4"
+  }
+}
