@@ -1,6 +1,3 @@
 {
-  "extends": "@luxass",
-  "rules": {
-    "@typescript-eslint/brace-style": "warn"
-  }
+  "extends": "@luxass"
 }

@@ -1,22 +1,22 @@
 {
-  "name": "@luxass/load-config",
+  "name": "@luxass/find-config",
   "type": "module",
   "version": "0.1.0",
-  "description": "Load Configuration from a file",
+  "description": "",
   "author": {
     "name": "Lucas Norgaard",
     "email": "lucasnrgaard@gmail.com",
     "url": "https://luxass.dev"
   },
   "license": "MIT",
-  "homepage": "https://github.com/luxass/load-config/blob/main/packages/load-config#readme",
+  "homepage": "https://github.com/luxass/load-config/blob/main/packages/find-config#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/luxass/load-config",
-    "directory": "packages/load-config"
+    "url": "https://github.com/luxass/find-config",
+    "directory": "packages/find-config"
   },
   "bugs": {
-    "url": "https://github.com/luxass/load-config/issues"
+    "url": "https://github.com/luxass/find-config/issues"
   },
   "exports": {
     ".": {
@@ -40,14 +40,5 @@
     "dev": "tsup --watch",
     "test": "vitest --run",
     "lint": "eslint --cache {src,tests}/**/*.ts"
-  },
-  "peerDependencies": {
-    "esbuild": "^0.16.4"
-  },
-  "dependencies": {
-    "tsconf-utils": "^1.0.1"
-  },
-  "devDependencies": {
-    "esbuild": "^0.16.4"
   }
 }
