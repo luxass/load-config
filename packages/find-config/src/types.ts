@@ -1,10 +1,18 @@
+export interface ConfigResult<T> {
+  path: string;
+  config: T | null;
+}
+
 export interface Options {
-  loaders: Array<Loader>;
+  files: string[];
+  loaders?: Array<Loader>;
+  cwd: string;
+  name: string;
 }
 
 type MaybeAsync<T> = T | Promise<T>;
 
 export interface Loader {
   filter: RegExp;
-  load: () => MaybeAsync<Options>;
+  load(path: string, name: string): MaybeAsync<any>;
 }

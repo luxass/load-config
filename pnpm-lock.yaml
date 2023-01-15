@@ -4,8 +4,8 @@ importers:
 
   .:
     specifiers:
-      '@luxass/eslint-config': ^2.2.5
-      '@luxass/prettier-config': ^1.1.3
+      '@luxass/eslint-config': ^2.2.6
+      '@luxass/prettier-config': ^1.1.4
       '@types/node': ^18.11.17
       eslint: ^8.30.0
       prettier: ^2.8.1
@@ -14,8 +14,8 @@ importers:
       typescript: ^4.9.4
       vitest: ^0.26.2
     devDependencies:
-      '@luxass/eslint-config': 2.2.5_iukboom6ndih5an6iafl45j2fe
-      '@luxass/prettier-config': 1.1.3_prettier@2.8.1
+      '@luxass/eslint-config': 2.2.6_iukboom6ndih5an6iafl45j2fe
+      '@luxass/prettier-config': 1.1.4_prettier@2.8.1
       '@types/node': 18.11.18
       eslint: 8.31.0
       prettier: 2.8.1
@@ -572,8 +572,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@luxass/eslint-config/2.2.5_iukboom6ndih5an6iafl45j2fe:
-    resolution: {integrity: sha512-mAHKHtA7qHqKR5bbgxkJ/vFK+LZIIcWMg8ccdLJ3mcWsEJsl1C91xgO+c18ffl4zy4cqzCJzYCXIWGWl+GWuHA==}
+  /@luxass/eslint-config/2.2.6_iukboom6ndih5an6iafl45j2fe:
+    resolution: {integrity: sha512-m8yZcBEmYbcV7lseNNy39MJgoudwXyxbWkX686i3fAhaATXGZpYQzDNGYVRyypi+QQkriOs2Zv7MGS5wi+fD8g==}
     peerDependencies:
       eslint: ^8.30.0
       typescript: ^4.9.4
@@ -602,8 +602,8 @@ packages:
       - supports-color
     dev: true
 
-  /@luxass/prettier-config/1.1.3_prettier@2.8.1:
-    resolution: {integrity: sha512-hjv230GIUcG6ofCMZvENxRK0WzUycpkO5iEj/HY3C9eUNQDXN3qzfRvGUAiN0Sc1ZOA+IQYEIzCmjv2+d/bomw==}
+  /@luxass/prettier-config/1.1.4_prettier@2.8.1:
+    resolution: {integrity: sha512-VF+G0ytDVQMNBQjx5oOwuNybofTGTJVPU0TTAR+wxatfXXWfKIEJfvTBUqfv+GzO3gIsartpdzL1CnjCWZJhcw==}
     peerDependencies:
       prettier: ^2.8.1
     dependencies:
