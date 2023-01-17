@@ -1,0 +1,8 @@
+{
+  "name": "typeschema",
+  "type": "module",
+  "version": "0.0.1",
+  "activationEvents": [
+    "onLanguage:typescript"
+  ]
+}

@@ -1,11 +1,11 @@
 import { statSync } from "node:fs";
 import { stat } from "node:fs/promises";
 import { createRequire } from "node:module";
-import { basename, extname, parse, resolve } from "node:path";
+import { basename, parse, resolve } from "node:path";
 
 import type { ConfigResult, Loader, Options } from "./types";
 
-const customRequire = createRequire(import.meta.url);
+const _require = createRequire(import.meta.url);
 
 export async function resolveConfig<T = any>(
   options: Options
@@ -13,13 +13,9 @@ export async function resolveConfig<T = any>(
   const { cwd, files, loaders: _loaders, name } = options;
   const loaders: Array<Loader> = [
     {
-      filter: /\.+/,
+      filter: /\.json$/,
       async load(file, name) {
-        const base = extname(file);
-        if (base === ".js" || base === ".cjs") {
-          return customRequire(file);
-        }
-        const content = customRequire(file);
+        const content = _require(file);
 
         if (content[name]) {
           return content[name];
@@ -35,7 +31,7 @@ export async function resolveConfig<T = any>(
   try {
     const file = await find(cwd, files, name);
     if (file) {
-      const loader = (loaders || []).find((loader) => loader.filter.test(file));
+      const loader = loaders.find((loader) => loader.filter.test(file));
       if (!loader) {
         return {
           path: file,
@@ -61,13 +57,9 @@ export function resolveConfigSync<T = any>(
   const { cwd, files, loaders: _loaders, name } = options;
   const loaders: Array<Loader> = [
     {
-      filter: /\.+/,
+      filter: /\.json$/,
       load(file, name) {
-        const base = extname(file);
-        if (base === ".js" || base === ".cjs") {
-          return customRequire(file);
-        }
-        const content = customRequire(file);
+        const content = _require(file);
 
         if (content[name]) {
           return content[name];
@@ -76,14 +68,17 @@ export function resolveConfigSync<T = any>(
       }
     }
   ];
+
   if (_loaders) {
     loaders.unshift(..._loaders);
   }
 
   try {
     const file = findSync(cwd, files, name);
+
     if (file) {
-      const loader = (loaders || []).find((loader) => loader.filter.test(file));
+      const loader = loaders.find((loader) => loader.filter.test(file));
+
       if (!loader) {
         return {
           path: file,
@@ -91,7 +86,21 @@ export function resolveConfigSync<T = any>(
         };
       }
 
-      const config = loader.load(file, name);
+      if (
+        Object.getPrototypeOf(loader.load).constructor.name === "AsyncFunction" &&
+        !loader.loadSync
+      ) {
+        console.error("You are using a async loader in sync mode.");
+        console.error(
+          "Please use a `loadSync` or use resolveConfig instead of resolveConfigSync."
+        );
+        return {
+          path: file,
+          config: null
+        };
+      }
+
+      const config = (loader.loadSync || loader.load)(file, name);
       return {
         path: file,
         config
@@ -119,7 +128,7 @@ async function find(
           if (baseName !== "package.json") {
             return file;
           }
-          const content = customRequire(file);
+          const content = _require(file);
           if (content[pkgKey]) {
             return file;
           }
@@ -147,7 +156,7 @@ function findSync(dir: string, names: string[], pkgKey: string): string | null {
           if (baseName !== "package.json") {
             return file;
           }
-          const content = customRequire(file);
+          const content = _require(file);
           if (content[pkgKey]) {
             return file;
           }
@@ -162,3 +171,5 @@ function findSync(dir: string, names: string[], pkgKey: string): string | null {
   }
   return null;
 }
+
+export { ConfigResult, Loader, Options };

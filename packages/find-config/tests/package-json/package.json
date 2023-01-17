@@ -1,0 +1,13 @@
+{
+  "name": "cookie-monster",
+  "type": "module",
+  "version": "0.0.1",
+  "activationEvents": [
+    "onLanguage:typescript"
+  ],
+  "cookies": {
+    "we": {
+      "love": "cookies"
+    }
+  }
+}
