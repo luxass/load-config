@@ -40,5 +40,8 @@
     "dev": "tsup --watch",
     "test": "vitest --run",
     "lint": "eslint --cache {src,tests}/**/*.ts"
+  },
+  "dependencies": {
+    "elysius": "^0.1.0"
   }
 }
