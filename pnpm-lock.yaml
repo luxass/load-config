@@ -25,7 +25,10 @@ importers:
       vitest: 0.26.2
 
   packages/find-config:
-    specifiers: {}
+    specifiers:
+      elysius: ^0.1.0
+    dependencies:
+      elysius: 0.1.0
 
   packages/load-config:
     specifiers:
@@ -1325,6 +1328,10 @@ packages:
   /electron-to-chromium/1.4.284:
     resolution: {integrity: sha512-M8WEXFuKXMYMVr45fo8mq0wUrrJHheiKZf6BArTKk9ZBYCKJEOU5H8cdWgDT+qCVZf7Na4lVUaZsA+h6uA9+PA==}
     dev: true
+
+  /elysius/0.1.0:
+    resolution: {integrity: sha512-lsVb6vb2qpOpABcPoiO585eyDNoNsIhpZhL/5fMUEq0u9LJkvrSrHTBqWekswIqwDEqAY2jdxMwniA5VQDc+nw==}
+    dev: false
 
   /entities/4.4.0:
     resolution: {integrity: sha512-oYp7156SP8LkeGD0GF85ad1X9Ai79WtRsZ2gxJqtBuzH+98YUV6jkHEKlZkMbcrjJjIVJNIDP/3WL9wQkoPbWA==}

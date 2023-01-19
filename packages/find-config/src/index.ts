@@ -1,6 +1,5 @@
-import { statSync } from "node:fs";
 import { createRequire } from "node:module";
-import { basename, parse, resolve } from "node:path";
+import { basename } from "node:path";
 
 import { find, findSync } from "elysius";
 
@@ -131,65 +130,5 @@ export function resolveConfigSync<T = any>(
   }
   return null;
 }
-
-// async function find(
-//   dir: string,
-//   names: string[],
-//   pkgKey: string
-// ): Promise<string | null> {
-//   const root = parse(dir).root;
-//   while (dir !== root) {
-//     for (const name of names) {
-//       const file = resolve(dir, name);
-//       try {
-//         const stats = await stat(file);
-//         if (stats.isFile()) {
-// const baseName = basename(file);
-// if (baseName !== "package.json") {
-//   return file;
-// }
-// const content = _require(file);
-// if (content[pkgKey]) {
-//   return file;
-// }
-//         }
-//       } catch (e) {
-//         if (e.code !== "ENOENT") {
-//           throw e;
-//         }
-//       }
-//     }
-//     dir = parse(dir).dir;
-//   }
-//   return null;
-// }
-
-// function findSync(dir: string, names: string[], pkgKey: string): string | null {
-//   const root = parse(dir).root;
-//   while (dir !== root) {
-//     for (const name of names) {
-//       const file = resolve(dir, name);
-//       try {
-//         const stats = statSync(file);
-//         if (stats.isFile()) {
-//           const baseName = basename(file);
-//           if (baseName !== "package.json") {
-//             return file;
-//           }
-//           const content = _require(file);
-//           if (content[pkgKey]) {
-//             return file;
-//           }
-//         }
-//       } catch (e) {
-//         if (e.code !== "ENOENT") {
-//           throw e;
-//         }
-//       }
-//     }
-//     dir = parse(dir).dir;
-//   }
-//   return null;
-// }
 
 export { ConfigResult, Loader, Options };
