@@ -14,6 +14,9 @@ const dirnameVarName = "__original_dirname";
 const filenameVarName = "__original_filename";
 const importMetaUrlVarName = "__original_import_meta_url";
 
+// @ts-expect-error - jest is only defined inside Jest.
+const isUsingJest = typeof jest === "undefined";
+
 export async function loadConfig<T = any>(
   resolvedPath: string,
   options?: Options
@@ -29,10 +32,9 @@ export async function loadConfig<T = any>(
       try {
         const packagePath = await find("package.json", { cwd: resolvedPath });
 
-        if (packagePath) {
-          isESM =
-            JSON.parse(await readFile(packagePath, "utf-8")).type === "module";
-        }
+        isESM =
+          !!packagePath &&
+          JSON.parse(await readFile(packagePath, "utf-8")).type === "module";
       } catch (e) {}
     }
   }
@@ -108,9 +110,7 @@ export async function loadConfig<T = any>(
   await writeFile(file, text);
   let config;
 
-  const requireFn =
-    // @ts-expect-error - jest is only defined inside Jest.
-    typeof jest === "undefined" ? (file) => import(file) : _require;
+  const requireFn = isUsingJest ? (file: string) => import(file) : _require;
   try {
     const r = await requireFn(file);
     config = r.default || r;

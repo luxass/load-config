@@ -45,7 +45,7 @@
     "@swc/core": "^1.3.22"
   },
   "dependencies": {
-    "tsconf-utils": "^1.0.1"
+    "elysius": "^0.1.0"
   },
   "devDependencies": {
     "@swc/core": "^1.3.22"
