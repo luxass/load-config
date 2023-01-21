@@ -44,10 +44,10 @@
   "peerDependencies": {
     "esbuild": "^0.16.4"
   },
-  "devDependencies": {
-    "esbuild": "^0.16.4"
-  },
   "dependencies": {
     "elysius": "^0.1.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.16.4"
   }
 }

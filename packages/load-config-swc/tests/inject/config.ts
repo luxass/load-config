@@ -4,4 +4,4 @@ export default {
   // @ts-expect-error aaaa
   url2: import.meta.urla,
   url: import.meta.url
-}
+};
