@@ -87,8 +87,6 @@ export async function loadConfig<T = any>(
               filter: /.*/
             },
             async (args) => {
-              console.log(args);
-
               if (args.path[0] === "." || path.isAbsolute(args.path)) {
                 return;
               }
