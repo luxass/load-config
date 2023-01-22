@@ -7,7 +7,7 @@ import { find } from "elysius";
 
 import { bundle, transform } from "@swc/core";
 
-import type { Options } from "./types";
+import type { LoadConfigResult, Options } from "./types";
 
 const _require = createRequire(import.meta.url);
 
@@ -21,7 +21,7 @@ const isUsingJest = typeof jest === "undefined";
 export async function loadConfig<T = any>(
   resolvedPath: string,
   options?: Options
-): Promise<T> {
+): Promise<LoadConfigResult<T>> {
   const { swc, spack, cwd } = options || {};
   let isESM = options?.isESM || false;
   if (typeof options?.isESM === "undefined") {
@@ -125,5 +125,7 @@ export async function loadConfig<T = any>(
   } finally {
     await unlink(file);
   }
-  return config && config.default ? config.default : config;
+  return {
+    config: config && config.default ? config.default : config
+  };
 }

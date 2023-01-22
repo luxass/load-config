@@ -49,7 +49,6 @@ export async function loadConfig<T = any>(
     target: ["node16"],
     sourcemap: "inline",
     bundle: true,
-    metafile: true,
     write: false,
     define: {
       ...esbuild?.define,
@@ -101,7 +100,6 @@ export async function loadConfig<T = any>(
     ]
   });
 
-  const dependencies = Object.keys(result.metafile?.inputs || {});
   const { text } = result.outputFiles[0];
 
   const file = `${resolvedPath}.timestamp-${Date.now()}.${
@@ -119,8 +117,7 @@ export async function loadConfig<T = any>(
     await unlink(file);
   }
   return {
-    config: config && config.default ? config.default : config,
-    dependencies
+    config: config && config.default ? config.default : config
   };
 }
 

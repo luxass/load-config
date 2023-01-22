@@ -21,3 +21,7 @@ export interface Options {
    */
   isESM?: boolean;
 }
+
+export interface LoadConfigResult<T> {
+  config: T;
+}

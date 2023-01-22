@@ -18,5 +18,4 @@ export interface Options {
 
 export interface LoadConfigResult<T> {
   config: T;
-  dependencies: string[];
 }
