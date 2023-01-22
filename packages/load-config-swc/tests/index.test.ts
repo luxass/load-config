@@ -8,7 +8,7 @@ describe("load config", () => {
   test("load config with esm detection", async () => {
     const configPath = join(__dirname, "typescript", "config.ts");
 
-    const { config } = await loadConfig(configPath, {
+    const config = await loadConfig(configPath, {
       cwd: join(__dirname, "typescript")
     });
 
@@ -21,7 +21,7 @@ describe("load config", () => {
   test("load config with esm", async () => {
     const configPath = join(__dirname, "typescript", "config.ts");
 
-    const { config } = await loadConfig(configPath, {
+    const config = await loadConfig(configPath, {
       cwd: join(__dirname, "typescript"),
       isESM: true
     });
@@ -35,7 +35,7 @@ describe("load config", () => {
   test("load config without esm", async () => {
     const configPath = join(__dirname, "typescript", "config.ts");
 
-    const { config } = await loadConfig(configPath, {
+    const config = await loadConfig(configPath, {
       cwd: join(__dirname, "typescript"),
       isESM: false
     });
@@ -50,7 +50,7 @@ describe("load config", () => {
     const dirname = join(__dirname, "inject");
     const configPath = join(dirname, "config.ts");
 
-    const { config } = await loadConfig(configPath, {
+    const config = await loadConfig(configPath, {
       cwd: dirname
     });
 
