@@ -65,8 +65,12 @@ export async function loadConfig<T = any>(
     ]
   });
 
-  const bundleCode = bundleResult.main.code
+  // spack extracts import.meta.url into a object that
+  // hold both url, and main.
+  // so we replace importMeta.url with __original_import_meta_url
+  // and importMeta.main with ''. <- to remove it from the config file.
 
+  const bundleCode = bundleResult.main.code
     .replaceAll(
       /(^|[^\w.])import\.meta\.url($|[^\w.])/gm,
       `$1${importMetaUrlVarName}$2`
@@ -82,8 +86,7 @@ export async function loadConfig<T = any>(
     cwd: cwd || process.cwd(),
     jsc: {
       parser: {
-        syntax: "typescript",
-        dynamicImport: true
+        syntax: "typescript"
       },
       transform: {
         optimizer: {
