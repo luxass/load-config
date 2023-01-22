@@ -1,4 +1,6 @@
-# load-config-swc
+# load-config-swc 
+
+> NEEDS MORE TESTING BEFORE A RELEASE
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@luxass/load-config-swc"><img src="https://img.shields.io/npm/v/@luxass/load-config-swc?style=for-the-badge&color=3FA7D6&label="></a>
@@ -19,5 +21,5 @@ await loadConfig("typeschema.config.ts", {
   swc: {
     // options for swc
   }
-}) // { config: { ... }, dependencies: [] }
+}) // { ... }
 ```
