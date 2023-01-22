@@ -23,14 +23,14 @@ export async function loadConfig<T = any>(
 ): Promise<LoadConfigResult<T>> {
   const { esbuild, cwd } = options || {};
   let isESM = options?.isESM || false;
-  if (!options?.isESM) {
+  if (typeof options?.isESM === "undefined") {
     if (/\.m[jt]s$/.test(resolvedPath)) {
       isESM = true;
     } else if (/\.c[jt]s$/.test(resolvedPath)) {
       isESM = false;
     } else {
       try {
-        const packagePath = await find("package.json", { cwd: resolvedPath });
+        const packagePath = await find("package.json");
 
         isESM =
           !!packagePath &&
@@ -52,6 +52,7 @@ export async function loadConfig<T = any>(
     metafile: true,
     write: false,
     define: {
+      ...esbuild?.define,
       "__dirname": dirnameVarName,
       "__filename": filenameVarName,
       "import.meta.url": importMetaUrlVarName
@@ -86,7 +87,9 @@ export async function loadConfig<T = any>(
               filter: /.*/
             },
             async (args) => {
-              if (args.kind === "entry-point" || path.isAbsolute(args.path)) {
+              console.log(args);
+
+              if (args.path[0] === "." || path.isAbsolute(args.path)) {
                 return;
               }
 
@@ -104,7 +107,7 @@ export async function loadConfig<T = any>(
   const { text } = result.outputFiles[0];
 
   const file = `${resolvedPath}.timestamp-${Date.now()}.${
-    isESM ? "mjs" : "js"
+    isESM ? "mjs" : "cjs"
   }`;
 
   await writeFile(file, text);
@@ -112,7 +115,7 @@ export async function loadConfig<T = any>(
 
   const requireFn = isUsingJest ? (file: string) => import(file) : _require;
   try {
-    const r = await requireFn(file);
+    const r = await requireFn(pathToFileURL(file).pathname);
     config = r.default || r;
   } finally {
     await unlink(file);

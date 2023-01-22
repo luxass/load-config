@@ -1,4 +1,5 @@
 import type { Options as SwcOptions } from "@swc/core";
+import type { BundleOptions } from "@swc/core/spack";
 
 export interface Options {
   /**
@@ -11,12 +12,12 @@ export interface Options {
   swc?: SwcOptions;
 
   /**
+   * Options for spack (swc's bundler)
+   */
+  spack?: BundleOptions;
+
+  /**
    * Skip format detection
    */
   isESM?: boolean;
-}
-
-export interface LoadConfigResult<T> {
-  config: T;
-  dependencies: string[];
 }

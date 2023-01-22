@@ -1,13 +1,13 @@
 import { readFile, unlink, writeFile } from "node:fs/promises";
-import { createRequire } from "node:module";
+import { builtinModules, createRequire } from "node:module";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
 import { find } from "elysius";
 
-import { transform } from "@swc/core";
+import { bundle, transform } from "@swc/core";
 
-import type { LoadConfigResult, Options } from "./types";
+import type { Options } from "./types";
 
 const _require = createRequire(import.meta.url);
 
@@ -21,17 +21,17 @@ const isUsingJest = typeof jest === "undefined";
 export async function loadConfig<T = any>(
   resolvedPath: string,
   options?: Options
-): Promise<LoadConfigResult<T>> {
-  const { swc, cwd } = options || {};
+): Promise<T> {
+  const { swc, spack, cwd } = options || {};
   let isESM = options?.isESM || false;
-  if (!options?.isESM) {
+  if (typeof options?.isESM === "undefined") {
     if (/\.m[jt]s$/.test(resolvedPath)) {
       isESM = true;
     } else if (/\.c[jt]s$/.test(resolvedPath)) {
       isESM = false;
     } else {
       try {
-        const packagePath = await find("package.json", { cwd: resolvedPath });
+        const packagePath = await find("package.json");
 
         isESM =
           !!packagePath &&
@@ -39,26 +39,57 @@ export async function loadConfig<T = any>(
       } catch (e) {}
     }
   }
-  const content = await readFile(resolvedPath, "utf-8");
-
+  const resolvedUrlPath = pathToFileURL(resolvedPath);
   const injectValues =
-    `var ${dirnameVarName} = ${JSON.stringify(path.dirname(resolvedPath))};` +
-    `var ${filenameVarName} = ${JSON.stringify(resolvedPath)};` +
-    `var ${importMetaUrlVarName} = ${JSON.stringify(
-      pathToFileURL(resolvedPath).href
-    )};`;
+    `const ${dirnameVarName} = ${JSON.stringify(
+      path.dirname(resolvedUrlPath.pathname)
+    )};` +
+    `const ${filenameVarName} = ${JSON.stringify(resolvedUrlPath.pathname)};` +
+    `const ${importMetaUrlVarName} = ${JSON.stringify(resolvedUrlPath.href)};`;
 
-  const { code } = await transform(content, {
+  const bundleResult = await bundle({
+    ...spack,
+    workingDir: cwd || process.cwd(),
+    entry: {
+      main: resolvedPath
+    },
+    output: {
+      name: "load-config-output",
+      path: "load-config-output.js"
+    },
+    module: {},
+    externalModules: [
+      ...(spack?.externalModules || []),
+      ...builtinModules,
+      ...builtinModules.map((name) => `node:${name}`)
+    ]
+  });
+
+  const bundleCode = bundleResult.main.code
+
+    .replaceAll(
+      /(^|[^\w.])import\.meta\.url($|[^\w.])/gm,
+      `$1${importMetaUrlVarName}$2`
+    )
+    .replaceAll(
+      /(^|[^\w.])importMeta\.url($|[^\w.])/gm,
+      `$1${importMetaUrlVarName}$2`
+    )
+    .replaceAll(/(^|[^\w.])import\.meta\.main($|[^\w.])/gm, "''");
+
+  const { code } = await transform(bundleCode, {
     ...swc,
     cwd: cwd || process.cwd(),
     jsc: {
       parser: {
-        syntax: "typescript"
+        syntax: "typescript",
+        dynamicImport: true
       },
       transform: {
         optimizer: {
           globals: {
             vars: {
+              ...swc?.jsc?.transform?.optimizer?.globals?.vars,
               __dirname: dirnameVarName,
               __filename: filenameVarName
             }
@@ -72,36 +103,24 @@ export async function loadConfig<T = any>(
     isModule: true,
     module: {
       type: isESM ? "es6" : "commonjs",
-      preserveImportMeta: true,
+      preserveImportMeta: false,
       strictMode: false
-    },
-    outputPath: resolvedPath
+    }
   });
 
   const file = `${resolvedPath}.timestamp-${Date.now()}.${
-    isESM ? "mjs" : "js"
+    isESM ? "mjs" : "cjs"
   }`;
 
-  await writeFile(
-    file,
-    injectValues +
-      code.replaceAll(
-        /(^|[^\w.])import\.meta\.url($|[^\w.])/gm,
-        `$1${importMetaUrlVarName}$2`
-      )
-  );
+  await writeFile(file, injectValues + code);
   let config;
 
   const requireFn = isUsingJest ? (file: string) => import(file) : _require;
-
   try {
-    const r = await requireFn(file);
+    const r = await requireFn(pathToFileURL(file).pathname);
     config = r.default || r;
   } finally {
     await unlink(file);
   }
-  return {
-    config: config && config.default ? config.default : config,
-    dependencies: []
-  };
+  return config && config.default ? config.default : config;
 }
