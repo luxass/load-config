@@ -36,7 +36,7 @@ export async function loadConfig<T = any>(
         isESM =
           !!packagePath &&
           JSON.parse(await readFile(packagePath, "utf-8")).type === "module";
-      } catch (e) {}
+      } catch (e) { }
     }
   }
   const resolvedUrlPath = pathToFileURL(resolvedPath);
@@ -111,9 +111,8 @@ export async function loadConfig<T = any>(
     }
   });
 
-  const file = `${resolvedPath}.timestamp-${Date.now()}.${
-    isESM ? "mjs" : "cjs"
-  }`;
+  const file = `${resolvedPath}.timestamp-${Date.now()}.${isESM ? "mjs" : "cjs"
+    }`;
 
   await writeFile(file, injectValues + code);
   let config;
@@ -126,6 +125,6 @@ export async function loadConfig<T = any>(
     await unlink(file);
   }
   return {
-    config: config && config.default ? config.default : config
+    config: config && (config.default ? config.default : config)
   };
 }

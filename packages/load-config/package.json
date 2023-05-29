@@ -2,6 +2,7 @@
   "name": "@luxass/load-config",
   "type": "module",
   "version": "0.1.0",
+  "packageManager": "pnpm@8.6.0",
   "description": "Load Configuration from a file",
   "author": {
     "name": "Lucas Norgaard",
@@ -37,12 +38,11 @@
   "engines": {
     "node": ">=16"
   },
-  "packageManager": "pnpm@8.6.0",
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
     "test": "vitest --run",
-    "lint": "eslint --cache {src,tests}/**/*.ts"
+    "lint": "eslint {src,tests}/**/*.ts"
   },
   "peerDependencies": {
     "esbuild": "^0.16.17"

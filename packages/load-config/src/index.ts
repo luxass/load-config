@@ -117,7 +117,7 @@ export async function loadConfig<T = any>(
     await unlink(file);
   }
   return {
-    config: config && config.default ? config.default : config
+    config: config && (config.default ? config.default : config)
   };
 }
 

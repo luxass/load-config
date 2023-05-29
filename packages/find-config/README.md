@@ -20,14 +20,14 @@ const cookieLoader: Loader = {
   load: async (path) => {
     return {
       name: "cookie from async loader",
-    }
+    };
   },
   loadSync: (path) => {
     return {
       name: "cookie from sync loader",
-    }
+    };
   }
-}
+};
 
 await resolveConfig({
   files: [
@@ -42,7 +42,7 @@ await resolveConfig({
   ],
   cwd: process.cwd(),
   name: "cookie", // used as the packageKey for package.json
-}) // { name: "cookie from async loader" }
+}); // { name: "cookie from async loader" }
 
 resolveConfigSync({
   files: [
@@ -57,5 +57,5 @@ resolveConfigSync({
   ],
   cwd: process.cwd(),
   name: "cookie", // used as the packageKey for package.json
-}) // { name: "cookie from sync loader" }
+}); // { name: "cookie from sync loader" }
 ```

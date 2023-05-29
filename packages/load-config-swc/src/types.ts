@@ -1,27 +1,27 @@
 import type { Options as SwcOptions } from "@swc/core";
 import type { BundleOptions } from "@swc/core/spack";
 
-export interface Options {
+export type Options = {
   /**
    * Working directory
    */
-  cwd?: string;
+  cwd?: string
   /**
    * Options for swc
    */
-  swc?: SwcOptions;
+  swc?: SwcOptions
 
   /**
    * Options for spack (swc's bundler)
    */
-  spack?: BundleOptions;
+  spack?: BundleOptions
 
   /**
    * Skip format detection
    */
-  isESM?: boolean;
-}
+  isESM?: boolean
+};
 
-export interface LoadConfigResult<T> {
-  config: T;
-}
+export type LoadConfigResult<T> = {
+  config: T
+};

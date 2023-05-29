@@ -2,6 +2,7 @@
   "name": "@luxass/find-config",
   "type": "module",
   "version": "0.1.0",
+  "packageManager": "pnpm@8.6.0",
   "description": "",
   "author": {
     "name": "Lucas Norgaard",
@@ -37,12 +38,11 @@
   "engines": {
     "node": ">=16"
   },
-  "packageManager": "pnpm@8.6.0",
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
     "test": "vitest --run",
-    "lint": "eslint --cache {src,tests}/**/*.ts"
+    "lint": "eslint {src,tests}/**/*.ts"
   },
   "dependencies": {
     "elysius": "^0.1.0"

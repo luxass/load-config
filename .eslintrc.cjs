@@ -1,9 +1,9 @@
 module.exports = {
-  "extends": "@luxass",
-  "overrides": [
+  extends: "@luxass",
+  overrides: [
     {
-      "files": ["*.cookie"],
+      files: ["*.cookie"],
       parser: "jsonc-eslint-parser"
     }
   ]
-}
+};
