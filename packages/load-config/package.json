@@ -37,7 +37,7 @@
   "engines": {
     "node": ">=16"
   },
-  "packageManager": "pnpm@7.18.0",
+  "packageManager": "pnpm@7.32.5",
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -51,6 +51,6 @@
     "elysius": "^0.1.0"
   },
   "devDependencies": {
-    "esbuild": "^0.16.17"
+    "esbuild": "^0.17.0"
   }
 }
