@@ -21,5 +21,5 @@ await loadConfig("typeschema.config.ts", {
   swc: {
     // options for swc
   }
-}) // { config: { ... } }
+}); // { config: { ... } }
 ```

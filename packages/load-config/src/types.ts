@@ -1,21 +1,21 @@
 import type { BuildOptions } from "esbuild";
 
-export interface Options {
+export type Options = {
   /**
    * Working directory
    */
-  cwd?: string;
+  cwd?: string
   /**
    * Options for esbuild
    */
-  esbuild?: BuildOptions;
+  esbuild?: BuildOptions
 
   /**
    * Skip format detection
    */
-  isESM?: boolean;
-}
+  isESM?: boolean
+};
 
-export interface LoadConfigResult<T> {
-  config: T;
-}
+export type LoadConfigResult<T> = {
+  config: T
+};

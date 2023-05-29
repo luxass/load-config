@@ -7,7 +7,7 @@ import type { ConfigResult, Loader, Options } from "./types";
 
 const _require = createRequire(import.meta.url);
 
-const tester = (file: string, name: string) => {
+function tester(file: string, name: string) {
   const baseName = basename(file);
   if (baseName !== "package.json") {
     return true;
@@ -17,7 +17,7 @@ const tester = (file: string, name: string) => {
     return true;
   }
   return false;
-};
+}
 
 export async function resolveConfig<T = any>(
   options: Options

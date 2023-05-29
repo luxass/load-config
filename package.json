@@ -3,11 +3,11 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@8.6.0",
   "license": "MIT",
   "engines": {
     "node": ">=16"
   },
-  "packageManager": "pnpm@8.6.0",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "turbo run build",
@@ -19,11 +19,9 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@luxass/eslint-config": "^2.2.6",
-    "@luxass/prettier-config": "^1.1.4",
+    "@luxass/eslint-config": "^3.2.0",
     "@types/node": "^18.11.17",
     "eslint": "^8.30.0",
-    "prettier": "^2.8.1",
     "tsup": "^6.5.0",
     "turbo": "^1.6.3",
     "typescript": "^5.0.0",
