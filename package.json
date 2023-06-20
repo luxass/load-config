@@ -22,7 +22,7 @@
     "@luxass/eslint-config": "^3.2.0",
     "@types/node": "^18.11.17",
     "eslint": "^8.30.0",
-    "tsup": "^6.5.0",
+    "tsup": "^7.0.0",
     "turbo": "^1.6.3",
     "typescript": "^5.0.0",
     "vitest": "^0.32.0"
