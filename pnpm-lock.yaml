@@ -12,8 +12,8 @@ importers:
         specifier: ^3.2.2
         version: 3.2.2(@typescript-eslint/parser@5.60.0)(eslint@8.43.0)(typescript@5.1.3)
       '@types/node':
-        specifier: ^18.16.18
-        version: 18.16.18
+        specifier: ^20.14.10
+        version: 20.14.10
       eslint:
         specifier: ^8.43.0
         version: 8.43.0
@@ -713,6 +713,7 @@ packages:
   /@humanwhocodes/config-array@0.11.10:
     resolution: {integrity: sha512-KVVjQmNUepDVGXNuoRRdmmEjruj0KfiGSbS8LVc12LMsWDQzRXJ0qdhN8L8uUigKpfEHRhlaQFY0ib1tnUbNeQ==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
     dependencies:
       '@humanwhocodes/object-schema': 1.2.1
       debug: 4.3.4
@@ -728,6 +729,7 @@ packages:
 
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    deprecated: Use @eslint/object-schema instead
     dev: true
 
   /@jest/schemas@29.6.0:
@@ -773,6 +775,7 @@ packages:
 
   /@luxass/eslint-config-js@3.2.2(@typescript-eslint/eslint-plugin@5.60.0)(@typescript-eslint/parser@5.60.0)(eslint@8.43.0)(typescript@5.1.3):
     resolution: {integrity: sha512-rOxTS4JD9MpYsrnhxvRPtu4t/C23FzxoAIZDJL+moP64HloV2rbJW3qGc+O/UvIMUxsMjI715Z7XZJ1X2hn91A==}
+    deprecated: This package is deprecated. Please use @luxass/eslint-config instead
     peerDependencies:
       eslint: '>=8.8.0'
     dependencies:
@@ -801,6 +804,7 @@ packages:
 
   /@luxass/eslint-config-ts@3.2.2(eslint@8.43.0)(typescript@5.1.3):
     resolution: {integrity: sha512-93SUt6jLyQ6uaiaZikkUqDf0niwdn9l5X3P5nUnxcM6IoQbeTBeI/vTJ7czQiKO5fCFADUr/OG6TrZPKvV68XA==}
+    deprecated: This package is deprecated. Please use @luxass/eslint-config instead
     peerDependencies:
       eslint: '>=8.8.0'
       typescript: '>=4.9'
@@ -818,6 +822,7 @@ packages:
 
   /@luxass/eslint-config-vue@3.2.2(@typescript-eslint/parser@5.60.0)(eslint@8.43.0)(typescript@5.1.3):
     resolution: {integrity: sha512-Klu3dxf3oHO4R/n8SeZxNb1fVD7VZDadR7qhyZFwugfyVWDCK4izXtWjSjrTT1xQZvKLmGrzz5pNRrQ2LvhJvw==}
+    deprecated: This package is deprecated. Please use @luxass/eslint-config instead
     peerDependencies:
       eslint: '>=8.8.0'
     dependencies:
@@ -1012,8 +1017,10 @@ packages:
       '@types/unist': 2.0.6
     dev: true
 
-  /@types/node@18.16.18:
-    resolution: {integrity: sha512-/aNaQZD0+iSBAGnvvN2Cx92HqE5sZCPZtx2TsK+4nvV23fFe09jVDvpArXr2j9DnYlzuU9WuoykDDc6wqvpNcw==}
+  /@types/node@20.14.10:
+    resolution: {integrity: sha512-MdiXf+nDuMvY0gJKxyfZ7/6UFsETO7mGKF54MVD/ekJS6HdFtpZFBgrh6Pseu64XTb2MLyFPlbW6hj8HYRQNOQ==}
+    dependencies:
+      undici-types: 5.26.5
     dev: true
 
   /@types/normalize-package-data@2.4.1:
@@ -2282,6 +2289,7 @@ packages:
 
   /glob@7.1.6:
     resolution: {integrity: sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==}
+    deprecated: Glob versions prior to v9 are no longer supported
     dependencies:
       fs.realpath: 1.0.0
       inflight: 1.0.6
@@ -2293,6 +2301,7 @@ packages:
 
   /glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    deprecated: Glob versions prior to v9 are no longer supported
     dependencies:
       fs.realpath: 1.0.0
       inflight: 1.0.6
@@ -2429,6 +2438,7 @@ packages:
 
   /inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
     dependencies:
       once: 1.4.0
       wrappy: 1.0.2
@@ -2727,6 +2737,7 @@ packages:
 
   /loupe@2.3.6:
     resolution: {integrity: sha512-RaPMZKiMy8/JruncMU5Bt6na1eftNoo++R4Y+N2FrxkDVTrGvcyzFTsaGif4QTeKESheMGegbhw6iUAq+5A8zA==}
+    deprecated: Please upgrade to 2.3.7 which fixes GHSA-4q6p-r6v2-jvc5
     dependencies:
       get-func-name: 2.0.0
     dev: true
@@ -3191,6 +3202,7 @@ packages:
 
   /rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
     dependencies:
       glob: 7.2.3
@@ -3637,6 +3649,10 @@ packages:
       which-boxed-primitive: 1.0.2
     dev: true
 
+  /undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+    dev: true
+
   /unist-util-stringify-position@2.0.3:
     resolution: {integrity: sha512-3faScn5I+hy9VleOq/qNbAd6pAx7iH5jYBMS9I1HgQVijz/4mv5Bvw5iw1sC/90CODiKo81G/ps8AJrISn687g==}
     dependencies:
@@ -3660,7 +3676,7 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite-node@0.34.0(@types/node@18.16.18):
+  /vite-node@0.34.0(@types/node@20.14.10):
     resolution: {integrity: sha512-rGZMvpb052rjUwJA/a17xMfOibzNF7byMdRSTcN2Lw8uxX08s5EfjWW5mBkm3MSFTPctMSVtT2yC+8ShrZbT5g==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -3670,7 +3686,7 @@ packages:
       mlly: 1.4.0
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.3.9(@types/node@18.16.18)
+      vite: 4.3.9(@types/node@20.14.10)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -3681,7 +3697,7 @@ packages:
       - terser
     dev: true
 
-  /vite@4.3.9(@types/node@18.16.18):
+  /vite@4.3.9(@types/node@20.14.10):
     resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -3706,7 +3722,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.16.18
+      '@types/node': 20.14.10
       esbuild: 0.17.19
       postcss: 8.4.24
       rollup: 3.25.1
@@ -3747,7 +3763,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.5
       '@types/chai-subset': 1.3.3
-      '@types/node': 18.16.18
+      '@types/node': 20.14.10
       '@vitest/expect': 0.34.0
       '@vitest/runner': 0.34.0
       '@vitest/snapshot': 0.34.0
@@ -3766,8 +3782,8 @@ packages:
       strip-literal: 1.0.1
       tinybench: 2.5.0
       tinypool: 0.7.0
-      vite: 4.3.9(@types/node@18.16.18)
-      vite-node: 0.34.0(@types/node@18.16.18)
+      vite: 4.3.9(@types/node@20.14.10)
+      vite-node: 0.34.0(@types/node@20.14.10)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
