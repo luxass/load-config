@@ -48,7 +48,7 @@
     "@swc/core": "^1.3.22"
   },
   "dependencies": {
-    "elysius": "^0.1.0"
+    "elysius": "^1.0.0"
   },
   "devDependencies": {
     "@swc/core": "^1.6.13"
