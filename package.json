@@ -19,7 +19,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@luxass/eslint-config": "^3.2.2",
+    "@luxass/eslint-config": "^4.0.0",
     "@types/node": "^18.16.18",
     "eslint": "^8.43.0",
     "tsup": "^7.0.0",
