@@ -45,6 +45,6 @@
     "lint": "eslint {src,tests}/**/*.ts"
   },
   "dependencies": {
-    "elysius": "^0.1.0"
+    "elysius": "^1.0.0"
   }
 }
