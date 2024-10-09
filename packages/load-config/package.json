@@ -51,6 +51,6 @@
     "elysius": "^0.1.0"
   },
   "devDependencies": {
-    "esbuild": "^0.23.0"
+    "esbuild": "^0.24.0"
   }
 }
